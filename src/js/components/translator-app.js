@@ -6,6 +6,7 @@
  */
 
 import './input-form'
+import './text-field'
 
 // ** This is a template for creating a web component.
 
@@ -19,7 +20,10 @@ template.innerHTML = `
   </style>
   <p>Hi from translator-app!</p>
   <input-form></input-form>
+  <text-field></text-field>
 `
+// ^^ Should I add en error-field where the error messages are displayed?
+
 customElements.define('translator-app',
   /**
    * Represents a translator-app element.
@@ -27,6 +31,7 @@ customElements.define('translator-app',
   class extends HTMLElement {
     #inputForm
     #submittedText
+    #textField
 
     /**
      * Creates an instance of the current type.
@@ -37,6 +42,7 @@ customElements.define('translator-app',
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
       this.#inputForm = this.shadowRoot.querySelector('input-form')
+      this.#textField = this.shadowRoot.querySelector('text-field')
 
       // Listen for the events that the components dispatch
       this.#inputForm.addEventListener('textSubmitted', event => this.#textSubmitted(event))
@@ -49,7 +55,19 @@ customElements.define('translator-app',
      */
     #textSubmitted (event) {
       this.#submittedText = event.detail
-      console.log(this.#submittedText)
+      console.log(`Submitted text: ${this.#submittedText}`)
+
+      // ^^ Just try to send the text to the text-field component for now
+      this.#showTranslatedText(this.#submittedText)
+    }
+
+    /**
+     * TODO: Write something here.
+     *
+     * @param {string} translatedText - The translated text.
+     */
+    #showTranslatedText (translatedText) {
+      this.#textField.setAttribute('text', translatedText)
     }
   }
 )

@@ -1,0 +1,28 @@
+{
+  "name": "l3-1dv610",
+  "version": "1.0.0",
+  "description": "L3 - 1dv610",
+  "type": "module",
+  "browser": "src/js/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "npx eslint ./src || exit 0",
+    "lint:fix": "npx eslint ./src --fix || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upend0/L3-1dv610.git"
+  },
+  "author": "Maria Fredriksson <mf223wk@student.lnu.se>",
+  "license": "MIT",
+  "devDependencies": {
+    "@lnu/eslint-config": "^1.1.7",
+    "vite": "^3.2.4"
+  },
+  "bugs": {
+    "url": "https://github.com/upend0/L3-1dv610/issues"
+  },
+  "homepage": "https://github.com/upend0/L3-1dv610#readme"
+}

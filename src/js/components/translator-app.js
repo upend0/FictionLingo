@@ -8,10 +8,6 @@
 import './input-form'
 import './text-field'
 
-// ** This is a template for creating a web component.
-
-console.log('Hi from translator-app!')
-
 // Create a template
 const template = document.createElement('template')
 template.innerHTML = `
@@ -23,6 +19,9 @@ template.innerHTML = `
   <text-field></text-field>
 `
 // ^^ Should I add en error-field where the error messages are displayed?
+// ^^ Should I have a button for every language that the user can click on to translate to that language?
+// ^^ Should I have a text field that shows information?
+// ^^ Should I have a footer component?
 
 customElements.define('translator-app',
   /**

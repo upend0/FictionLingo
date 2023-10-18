@@ -6,17 +6,43 @@
  */
 
 import './input-form'
+import './footer-component'
 import './text-field'
 
 // Create a template
 const template = document.createElement('template')
 template.innerHTML = `
   <style>
-    
+    :host {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      justify-content: center;
+      height: 100vh; /* This ensures the component takes up the full viewport height */
+      font-family: 'Verdana', sans-serif; 
+      font-size: 24px;
+    }
+
+    /* Apply the font style to all descendants */
+    * {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .container {
+      background-color: #3aa1f5;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
   </style>
-  <p>Hi from translator-app!</p>
-  <input-form></input-form>
-  <text-field></text-field>
+  <div class="container">
+    <p>Hi from translator-app!</p>
+    <input-form></input-form>
+    <text-field></text-field>
+  </div>
+  <footer-component></footer-component>
 `
 // ^^ Should I add en error-field where the error messages are displayed?
 // ^^ Should I have a button for every language that the user can click on to translate to that language?

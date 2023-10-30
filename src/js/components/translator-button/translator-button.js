@@ -5,7 +5,6 @@
  * @version 1.0.0
  */
 
-// Create a template
 const template = document.createElement('template')
 template.innerHTML = `
   <style>
@@ -38,10 +37,7 @@ customElements.define('translator-button',
 
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
-      // ^^ Is this needed....?
-      this.buttonElement = this.shadowRoot.querySelector('button')
-
-      this.buttonElement.addEventListener('click', event => this.handleClick(event))
+      this.shadowRoot.querySelector('button').addEventListener('click', event => this.handleClick(event))
     }
 
     /**

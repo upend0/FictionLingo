@@ -10,13 +10,8 @@ import './../translator-button'
 // ^^ Just testing to import like this - make something else later
 import { translator } from '../../../../../L2-1DV610/src/app.js'
 
-// Create a template
 const template = document.createElement('template')
 template.innerHTML = `
-  <style>
-    
-  </style>
-  <!-- <button id="all-language-btn">All-language</button> -->
   <translator-button id="all-language-btn">All-language</translator-button>
 `
 customElements.define('all-language-translator',

@@ -5,9 +5,13 @@
  * @version 1.0.0
  */
 
+import './all-language-translator'
 import './input-form'
 import './footer-component'
 import './text-field'
+
+// ^^ Just testing to import like this - make something else later
+// import { translator } from '../../../../L2-1DV610/src/app.js'
 
 // Create a template
 const template = document.createElement('template')
@@ -40,6 +44,15 @@ template.innerHTML = `
   <div class="container">
     <p>Hi from translator-app!</p>
     <input-form></input-form>
+    <div id="translate-to">
+      <p>Choose a language to translate to:</p>
+      <all-language-translator class="translate-buttons"></all-language-translator>
+      <button id="all-language-btn" class="translate-buttons">All-language</button>
+      <button id="fig-language-btn">Fig-language</button>
+      <button id="i-language-btn">I-language</button>
+      <button id="p-language-btn">P-language</button>
+      <button id="robber-language-btn">Robber-language</button>
+    </div>
     <text-field></text-field>
   </div>
   <footer-component></footer-component>
@@ -47,16 +60,26 @@ template.innerHTML = `
 // ^^ Should I add en error-field where the error messages are displayed?
 // ^^ Should I have a button for every language that the user can click on to translate to that language?
 // ^^ Should I have a text field that shows information?
-// ^^ Should I have a footer component?
+// & Maybe remove the OK button later and the listener also etc...?
+// & Should the app translate from the made up languages also...?
+
+// TODO: Make every language component to be a button that the user can click on to translate to that language
+// TODO: Make the translator buttons disabled until the user has submitted a text and OK button has been clicked
 
 customElements.define('translator-app',
   /**
    * Represents a translator-app element.
    */
   class extends HTMLElement {
+    #allLanguageBtn
+    #figLanguageBtn
+    #iLanguageBtn
+    #pLanguageBtn
+    #robberLanguageBtn
     #inputForm
     #submittedText
     #textField
+    #translateButtons
 
     /**
      * Creates an instance of the current type.
@@ -66,11 +89,25 @@ customElements.define('translator-app',
 
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
+      this.#allLanguageBtn = this.shadowRoot.querySelector('#all-language-btn')
+      this.#figLanguageBtn = this.shadowRoot.querySelector('#fig-language-btn')
+      this.#iLanguageBtn = this.shadowRoot.querySelector('#i-language-btn')
+      this.#pLanguageBtn = this.shadowRoot.querySelector('#p-language-btn')
+      this.#robberLanguageBtn = this.shadowRoot.querySelector('#robber-language-btn')
       this.#inputForm = this.shadowRoot.querySelector('input-form')
       this.#textField = this.shadowRoot.querySelector('text-field')
+      this.#translateButtons = this.shadowRoot.querySelectorAll('.translate-buttons')
+
+      // Listen for when the buttons are clicked
+      // this.#allLanguageBtn.addEventListener('click', event => this.#translateToAllLanguage(event))
+      // this.#figLanguageBtn.addEventListener('click', event => this.#translateToFigLanguage(event))
+      // this.#iLanguageBtn.addEventListener('click', event => this.#translateToILanguage(event))
+      // this.#pLanguageBtn.addEventListener('click', event => this.#translateToPLanguage(event))
+      // this.#robberLanguageBtn.addEventListener('click', event => this.#translateToRobberLanguage(event))
 
       // Listen for the events that the components dispatch
       this.#inputForm.addEventListener('textSubmitted', event => this.#textSubmitted(event))
+      this.shadowRoot.querySelector('#translate-to').addEventListener('textTranslated', event => this.#showTranslatedText(event.detail))
     }
 
     /**
@@ -84,7 +121,24 @@ customElements.define('translator-app',
 
       // ^^ Just try to send the text to the text-field component for now
       this.#showTranslatedText(this.#submittedText)
+
+      // ^^ Maybe put this in a method instead?
+      // Loop through the translate buttons and set the submitted text as an attribute to them
+      this.#translateButtons.forEach(button => {
+        button.setAttribute('text', this.#submittedText)
+      })
     }
+
+    // #translateToAllLanguage (event) {
+    //   const translatedText = translator.allLanguageTranslator.translateToAllLanguage(this.#submittedText)
+    //   this.#showTranslatedText(translatedText)
+    // }
+
+    // #getTextFromInputForm () {
+    //   // Communicate to the input form that the app wants to get the text, by adding an attribute to the input form
+    //   // Then the input form dispatches an event that contains the text
+
+    // }
 
     /**
      * TODO: Write something here.

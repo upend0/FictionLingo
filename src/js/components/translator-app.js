@@ -6,6 +6,10 @@
  */
 
 import './all-language-translator'
+import './fig-language-translator'
+import './i-language-translator'
+import './p-language-translator'
+import './robber-language-translator'
 import './input-form'
 import './footer-component'
 import './text-field'
@@ -46,12 +50,16 @@ template.innerHTML = `
     <input-form></input-form>
     <div id="translate-to">
       <p>Choose a language to translate to:</p>
-      <all-language-translator class="translate-buttons"></all-language-translator>
-      <button id="all-language-btn" class="translate-buttons">All-language</button>
+      <all-language-translator class="translate-buttons" disabled></all-language-translator>
+      <fig-language-translator class="translate-buttons"></fig-language-translator>
+      <i-language-translator class="translate-buttons"></i-language-translator>
+      <p-language-translator class="translate-buttons"></p-language-translator>
+      <robber-language-translator class="translate-buttons"></robber-language-translator>
+      <!-- <button id="all-language-btn" class="translate-buttons">All-language</button>
       <button id="fig-language-btn">Fig-language</button>
       <button id="i-language-btn">I-language</button>
       <button id="p-language-btn">P-language</button>
-      <button id="robber-language-btn">Robber-language</button>
+      <button id="robber-language-btn">Robber-language</button> -->
     </div>
     <text-field></text-field>
   </div>
@@ -71,11 +79,11 @@ customElements.define('translator-app',
    * Represents a translator-app element.
    */
   class extends HTMLElement {
-    #allLanguageBtn
-    #figLanguageBtn
-    #iLanguageBtn
-    #pLanguageBtn
-    #robberLanguageBtn
+    // #allLanguageBtn
+    // #figLanguageBtn
+    // #iLanguageBtn
+    // #pLanguageBtn
+    // #robberLanguageBtn
     #inputForm
     #submittedText
     #textField
@@ -89,11 +97,11 @@ customElements.define('translator-app',
 
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
-      this.#allLanguageBtn = this.shadowRoot.querySelector('#all-language-btn')
-      this.#figLanguageBtn = this.shadowRoot.querySelector('#fig-language-btn')
-      this.#iLanguageBtn = this.shadowRoot.querySelector('#i-language-btn')
-      this.#pLanguageBtn = this.shadowRoot.querySelector('#p-language-btn')
-      this.#robberLanguageBtn = this.shadowRoot.querySelector('#robber-language-btn')
+      // this.#allLanguageBtn = this.shadowRoot.querySelector('#all-language-btn')
+      // this.#figLanguageBtn = this.shadowRoot.querySelector('#fig-language-btn')
+      // this.#iLanguageBtn = this.shadowRoot.querySelector('#i-language-btn')
+      // this.#pLanguageBtn = this.shadowRoot.querySelector('#p-language-btn')
+      // this.#robberLanguageBtn = this.shadowRoot.querySelector('#robber-language-btn')
       this.#inputForm = this.shadowRoot.querySelector('input-form')
       this.#textField = this.shadowRoot.querySelector('text-field')
       this.#translateButtons = this.shadowRoot.querySelectorAll('.translate-buttons')
@@ -122,10 +130,22 @@ customElements.define('translator-app',
       // ^^ Just try to send the text to the text-field component for now
       this.#showTranslatedText(this.#submittedText)
 
+      // Enable the translate buttons
+      this.#enableTranslateButtons()
+
       // ^^ Maybe put this in a method instead?
       // Loop through the translate buttons and set the submitted text as an attribute to them
       this.#translateButtons.forEach(button => {
         button.setAttribute('text', this.#submittedText)
+      })
+    }
+
+    /**
+     * Enables the translate buttons.
+     */
+    #enableTranslateButtons () {
+      this.#translateButtons.forEach(button => {
+        button.removeAttribute('disabled')
       })
     }
 

@@ -8,7 +8,7 @@
 import './../translator-button'
 
 // ^^ Just testing to import like this - make something else later
-import { translator } from '../../../../../L2-1DV610/src/app.js'
+import { theAllLanguageTranslator } from '../../../../../L2-1DV610/src/app.js'
 
 const template = document.createElement('template')
 template.innerHTML = `
@@ -40,7 +40,7 @@ customElements.define('all-language-translator',
       const textToTranslate = this.getAttribute('text')
 
       // Translate the text
-      const translatedText = translator.allLanguageTranslator.translateToAllLanguage(textToTranslate)
+      const translatedText = theAllLanguageTranslator.translateToTheAllLanguage(textToTranslate)
 
       // Dispatch a custom event that contains the translated text
       this.dispatchEvent(new window.CustomEvent('textTranslated', {

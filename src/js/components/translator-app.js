@@ -61,10 +61,8 @@ template.innerHTML = `
   <footer-component></footer-component>
 `
 // ^^ Should I add en error-field where the error messages are displayed?
-// ^^ Should I have a button for every language that the user can click on to translate to that language?
 // ^^ Should I have a text field that shows information?
-// & Maybe remove the OK button later and the listener also etc...?
-// & Should the app translate from the made up languages also...?
+// ^^ Should the app translate from the made up languages also...?
 
 // TODO: String validation in input-form-component
 

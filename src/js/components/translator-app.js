@@ -108,7 +108,6 @@ customElements.define('translator-app',
      * @param {object} event - The event object.
      */
     #textSubmitted (event) {
-      // Remove the error message if there is one
       this.#removeErrorMessage()
 
       this.#submittedText = event.detail
@@ -116,8 +115,13 @@ customElements.define('translator-app',
       // ^^ Just try to send the text to the text-field component for now
       this.#showTranslatedText(this.#submittedText)
 
-      // ^^ Maybe put this in a method instead?
-      // Loop through the translate buttons and set the submitted text as an attribute to them
+      this.#notifyTranslateButtonsOfSubmittedText()
+    }
+
+    /**
+     * Loop through the translate buttons and set the submitted text as an attribute to them.
+     */
+    #notifyTranslateButtonsOfSubmittedText () {
       this.#translateButtons.forEach(button => {
         button.setAttribute('text', this.#submittedText)
       })

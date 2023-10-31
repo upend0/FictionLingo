@@ -5,7 +5,6 @@
  * @version 1.0.0
  */
 
-// Create a template
 const template = document.createElement('template')
 template.innerHTML = `
   <style>
@@ -57,9 +56,9 @@ customElements.define('error-text-field',
     }
 
     /**
-     * Displays the text that was submitted.
+     * Displays the error message.
      *
-     * @param {string} errorMessageToDisplay - The text that was submitted.
+     * @param {string} errorMessageToDisplay - The error message to display.
      */
     #displayErrorMessage (errorMessageToDisplay) {
       this.#errorTextContainer.textContent = errorMessageToDisplay

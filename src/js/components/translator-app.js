@@ -61,13 +61,11 @@ template.innerHTML = `
   </div>
   <footer-component></footer-component>
 `
-// ^^ Should I add en error-field where the error messages are displayed?
+
 // ^^ Should I have a text field that shows information?
-// ^^ Should the app translate from the made up languages also...?
 
 // & Translate app to Swedish instead?
 
-// TODO: String validation in input-form-component
 // TODO: Change name of all-language to the-all-language
 
 customElements.define('translator-app',
@@ -77,7 +75,6 @@ customElements.define('translator-app',
   class extends HTMLElement {
     #inputForm
     #errorTextField
-    #submittedText
     #textField
     #translationContainer
     #translateButtons
@@ -97,33 +94,33 @@ customElements.define('translator-app',
       this.#translateButtons = this.shadowRoot.querySelectorAll('.translate-buttons')
 
       // Listen for the events that the components dispatch
-      this.#inputForm.addEventListener('textSubmitted', event => this.#textSubmitted(event))
+      this.#inputForm.addEventListener('textSubmitted', event => this.#validTextSubmitted(event.detail))
       this.#inputForm.addEventListener('invalidCharacters', event => this.#showErrorMessage(event.detail))
       this.#translationContainer.addEventListener('textTranslated', event => this.#showTranslatedText(event.detail))
     }
 
     /**
-     * TODO: Write something here.
+     * When a valid text is submitted, the error message is removed and the translate buttons are notified of the submitted text.
      *
-     * @param {object} event - The event object.
+     * @param {string} submittedText - The submitted text.
      */
-    #textSubmitted (event) {
+    #validTextSubmitted (submittedText) {
       this.#removeErrorMessage()
 
-      this.#submittedText = event.detail
-
       // ^^ Just try to send the text to the text-field component for now
-      this.#showTranslatedText(this.#submittedText)
+      this.#showTranslatedText(submittedText)
 
-      this.#notifyTranslateButtonsOfSubmittedText()
+      this.#notifyTranslateButtonsOfSubmittedText(submittedText)
     }
 
     /**
      * Loop through the translate buttons and set the submitted text as an attribute to them.
+     *
+     * @param {string} submittedText - The submitted text.
      */
-    #notifyTranslateButtonsOfSubmittedText () {
+    #notifyTranslateButtonsOfSubmittedText (submittedText) {
       this.#translateButtons.forEach(button => {
-        button.setAttribute('text', this.#submittedText)
+        button.setAttribute('text', submittedText)
       })
     }
 

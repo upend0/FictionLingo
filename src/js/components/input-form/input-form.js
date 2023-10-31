@@ -47,18 +47,42 @@ customElements.define('input-form',
     }
 
     /**
-     * Dispatches a custom event that contains the text that was submitted.
+     * Dispatches a custom event that contains the text that was submitted if the text contains only valid characters.
      *
      * @param {object} event - The event object.
      */
     #textSubmitted (event) {
-      // ^^ Should I check if the input field is empty here or if the text contains invalid characters etc?
+      // ^^ Should I check if the text contains invalid characters etc?
+      if (this.#isValidCharacters(this.#inputText.value)) {
+        // Dispatch a custom event that contains the text that was submitted
+        this.dispatchEvent(new CustomEvent('textSubmitted', {
+          bubbles: true,
+          detail: this.#inputText.value
+        }))
+      }
+    }
 
-      // Dispatch a custom event that contains the text that was submitted
-      this.dispatchEvent(new CustomEvent('textSubmitted', {
-        bubbles: true,
-        detail: this.#inputText.value
-      }))
+    /**
+     * Checks if the input text contains only valid characters.
+     *
+     * @param {string} inputText - The text that was submitted.
+     * @returns {boolean} True if the input text contains only valid characters.
+     */
+    #isValidCharacters (inputText) {
+      // Check so the input text contains only valid characters
+      // const regex = /^[a-zåäöA-ZÅÄÖ0-9,.!? ]+$/
+      const regex = /^[a-zåäöéüáàèìòúñ ]+$/i
+      // const regex = /^[a-zåäöéüáàèìòúñA-ZÅÄÖÉÜÁÀÈÌÒÚÑ ]+$/i
+      // ^^ Make inside () to its own method to make it more clear..?
+      if (inputText !== '' && !regex.test(inputText)) {
+        // Dispatch a custom event for invalid characters
+        this.dispatchEvent(new CustomEvent('invalidCharacters', {
+          bubbles: true,
+          detail: 'The input text contains invalid characters.'
+        }))
+        return false
+      }
+      return true
     }
   }
 )

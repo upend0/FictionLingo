@@ -11,6 +11,7 @@ import './i-language-translator'
 import './p-language-translator'
 import './robber-language-translator'
 import './input-form'
+import './error-text-field'
 import './footer-component'
 import './text-field'
 
@@ -46,11 +47,11 @@ template.innerHTML = `
     }
   </style>
   <div class="container">
-    <p>Hi from translator-app!</p>
     <input-form></input-form>
-    <div id="translate-to">
+    <error-text-field></error-text-field>
+    <div id="translation-container">
       <p>Choose a language to translate to:</p>
-      <all-language-translator class="translate-buttons" disabled></all-language-translator>
+      <all-language-translator class="translate-buttons"></all-language-translator>
       <fig-language-translator class="translate-buttons"></fig-language-translator>
       <i-language-translator class="translate-buttons"></i-language-translator>
       <p-language-translator class="translate-buttons"></p-language-translator>
@@ -64,7 +65,10 @@ template.innerHTML = `
 // ^^ Should I have a text field that shows information?
 // ^^ Should the app translate from the made up languages also...?
 
+// & Translate app to Swedish instead?
+
 // TODO: String validation in input-form-component
+// TODO: Change name of all-language to the-all-language
 
 customElements.define('translator-app',
   /**
@@ -72,8 +76,10 @@ customElements.define('translator-app',
    */
   class extends HTMLElement {
     #inputForm
+    #errorTextField
     #submittedText
     #textField
+    #translationContainer
     #translateButtons
 
     /**
@@ -85,12 +91,15 @@ customElements.define('translator-app',
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
       this.#inputForm = this.shadowRoot.querySelector('input-form')
+      this.#errorTextField = this.shadowRoot.querySelector('error-text-field')
       this.#textField = this.shadowRoot.querySelector('text-field')
+      this.#translationContainer = this.shadowRoot.querySelector('#translation-container')
       this.#translateButtons = this.shadowRoot.querySelectorAll('.translate-buttons')
 
       // Listen for the events that the components dispatch
       this.#inputForm.addEventListener('textSubmitted', event => this.#textSubmitted(event))
-      this.shadowRoot.querySelector('#translate-to').addEventListener('textTranslated', event => this.#showTranslatedText(event.detail))
+      this.#inputForm.addEventListener('invalidCharacters', event => this.#showErrorMessage(event.detail))
+      this.#translationContainer.addEventListener('textTranslated', event => this.#showTranslatedText(event.detail))
     }
 
     /**
@@ -99,6 +108,9 @@ customElements.define('translator-app',
      * @param {object} event - The event object.
      */
     #textSubmitted (event) {
+      // Remove the error message if there is one
+      this.#removeErrorMessage()
+
       this.#submittedText = event.detail
 
       // ^^ Just try to send the text to the text-field component for now
@@ -112,7 +124,23 @@ customElements.define('translator-app',
     }
 
     /**
-     * TODO: Write something here.
+     * Shows an error message.
+     *
+     * @param {string} errorMessage - The error message.
+     */
+    #showErrorMessage (errorMessage) {
+      this.#errorTextField.setAttribute('error-message', errorMessage)
+    }
+
+    /**
+     * Removes the error message.
+     */
+    #removeErrorMessage () {
+      this.#errorTextField.setAttribute('error-message', '')
+    }
+
+    /**
+     * Shows the translated text.
      *
      * @param {string} translatedText - The translated text.
      */

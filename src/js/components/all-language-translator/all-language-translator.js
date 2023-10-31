@@ -36,17 +36,25 @@ customElements.define('all-language-translator',
      * @param {object} event - The event object.
      */
     #translateToAllLanguage (event) {
-      // Get the text from the attribute of this component
-      const textToTranslate = this.getAttribute('text')
+      try {
+        // Get the text from the attribute of this component
+        const textToTranslate = this.getAttribute('text')
 
-      // Translate the text
-      const translatedText = theAllLanguageTranslator.translateToTheAllLanguage(textToTranslate)
+        // Translate the text
+        const translatedText = theAllLanguageTranslator.translateToTheAllLanguage(textToTranslate)
 
-      // Dispatch a custom event that contains the translated text
-      this.dispatchEvent(new window.CustomEvent('textTranslated', {
-        bubbles: true,
-        detail: translatedText
-      }))
+        // Dispatch a custom event that contains the translated text
+        this.dispatchEvent(new window.CustomEvent('textTranslated', {
+          bubbles: true,
+          detail: translatedText
+        }))
+      } catch (error) {
+        // Dispatch a custom event that contains the error message
+        this.dispatchEvent(new window.CustomEvent('errorFromModule', {
+          bubbles: true,
+          detail: error.message
+        }))
+      }
     }
   }
 )

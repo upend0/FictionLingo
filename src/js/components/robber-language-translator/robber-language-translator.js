@@ -27,7 +27,7 @@ customElements.define('robber-language-translator',
 
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
-      this.shadowRoot.querySelector('#robber-language-btn').addEventListener('translatorButtonClick', event => this.#translateToAllLanguage(event))
+      this.shadowRoot.querySelector('#robber-language-btn').addEventListener('translatorButtonClick', event => this.#translateToRobberLanguage(event))
     }
 
     /**
@@ -35,18 +35,26 @@ customElements.define('robber-language-translator',
      *
      * @param {object} event - The event object.
      */
-    #translateToAllLanguage (event) {
-      // Get the text from the attribute of this component
-      const textToTranslate = this.getAttribute('text')
+    #translateToRobberLanguage (event) {
+      try {
+        // Get the text from the attribute of this component
+        const textToTranslate = this.getAttribute('text')
 
-      // Translate the text
-      const translatedText = robberLanguageTranslator.translateToRobberLanguage(textToTranslate)
+        // Translate the text
+        const translatedText = robberLanguageTranslator.translateToRobberLanguage(textToTranslate)
 
-      // Dispatch a custom event that contains the translated text
-      this.dispatchEvent(new window.CustomEvent('textTranslated', {
-        bubbles: true,
-        detail: translatedText
-      }))
+        // Dispatch a custom event that contains the translated text
+        this.dispatchEvent(new window.CustomEvent('textTranslated', {
+          bubbles: true,
+          detail: translatedText
+        }))
+      } catch (error) {
+        // Dispatch a custom event that contains the error message
+        this.dispatchEvent(new window.CustomEvent('errorFromModule', {
+          bubbles: true,
+          detail: error.message
+        }))
+      }
     }
   }
 )

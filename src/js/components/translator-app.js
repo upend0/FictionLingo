@@ -66,7 +66,9 @@ template.innerHTML = `
 
 // & Translate app to Swedish instead?
 
+// TODO: Handle errors from the module
 // TODO: Change name of all-language to the-all-language
+// TODO: Refactor the methods for translating in the different translators
 
 customElements.define('translator-app',
   /**
@@ -97,6 +99,7 @@ customElements.define('translator-app',
       this.#inputForm.addEventListener('textSubmitted', event => this.#validTextSubmitted(event.detail))
       this.#inputForm.addEventListener('invalidCharacters', event => this.#invalidTextSubmitted(event.detail))
       this.#translationContainer.addEventListener('textTranslated', event => this.#showTranslatedText(event.detail))
+      this.#translationContainer.addEventListener('errorFromModule', event => this.#showErrorMessage(event.detail))
     }
 
     /**

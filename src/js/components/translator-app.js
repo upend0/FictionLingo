@@ -95,12 +95,12 @@ customElements.define('translator-app',
 
       // Listen for the events that the components dispatch
       this.#inputForm.addEventListener('textSubmitted', event => this.#validTextSubmitted(event.detail))
-      this.#inputForm.addEventListener('invalidCharacters', event => this.#showErrorMessage(event.detail))
+      this.#inputForm.addEventListener('invalidCharacters', event => this.#invalidTextSubmitted(event.detail))
       this.#translationContainer.addEventListener('textTranslated', event => this.#showTranslatedText(event.detail))
     }
 
     /**
-     * When a valid text is submitted, the error message is removed and the translate buttons are notified of the submitted text.
+     * When a valid text is submitted, any error message is removed and the translate buttons are notified of the submitted text.
      *
      * @param {string} submittedText - The submitted text.
      */
@@ -111,6 +111,13 @@ customElements.define('translator-app',
       this.#showTranslatedText(submittedText)
 
       this.#notifyTranslateButtonsOfSubmittedText(submittedText)
+    }
+
+    /**
+     * Removes the error message.
+     */
+    #removeErrorMessage () {
+      this.#errorTextField.setAttribute('error-message', '')
     }
 
     /**
@@ -125,6 +132,17 @@ customElements.define('translator-app',
     }
 
     /**
+     * When an invalid text is submitted, an error message is shown and the text is removed so the translate buttons can't translate it.
+     *
+     * @param {string} errorMessage - The error message.
+     */
+    #invalidTextSubmitted (errorMessage) {
+      this.#showErrorMessage(errorMessage)
+
+      this.#removeTextFromTranslateButtons()
+    }
+
+    /**
      * Shows an error message.
      *
      * @param {string} errorMessage - The error message.
@@ -134,10 +152,12 @@ customElements.define('translator-app',
     }
 
     /**
-     * Removes the error message.
+     * Removes the submitted text from the translate buttons.
      */
-    #removeErrorMessage () {
-      this.#errorTextField.setAttribute('error-message', '')
+    #removeTextFromTranslateButtons () {
+      this.#translateButtons.forEach(button => {
+        button.setAttribute('text', '')
+      })
     }
 
     /**

@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import { Utilities } from '../translator-components/Utilities.js'
+import { Utilities } from './../Utilities.js'
 
 const template = document.createElement('template')
 template.innerHTML = `

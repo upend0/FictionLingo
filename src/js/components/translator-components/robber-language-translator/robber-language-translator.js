@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import { Utilities } from './../Utilities.js'
+import { Utilities } from './../../Utilities.js'
 import './../translator-button'
 
 import { robberLanguageTranslator } from 'l2-1dv610'

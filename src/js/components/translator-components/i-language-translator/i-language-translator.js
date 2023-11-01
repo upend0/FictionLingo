@@ -5,8 +5,8 @@
  * @version 1.0.0
  */
 
-import { Utilities } from './../Utilities.js'
-import '../translator-button'
+import { Utilities } from './../../Utilities.js'
+import './../translator-button'
 
 import { iLanguageTranslator } from 'l2-1dv610'
 

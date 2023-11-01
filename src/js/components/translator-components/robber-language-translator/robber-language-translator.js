@@ -5,6 +5,7 @@
  * @version 1.0.0
  */
 
+import { Utilities } from './../Utilities.js'
 import './../translator-button'
 
 import { robberLanguageTranslator } from 'l2-1dv610'
@@ -38,23 +39,10 @@ customElements.define('robber-language-translator',
 
         const translatedText = robberLanguageTranslator.translateToRobberLanguage(textToTranslate)
 
-        this.#dispatchCustomEvent('textTranslated', translatedText)
+        Utilities.dispatchCustomEvent(this, 'textTranslated', translatedText)
       } catch (error) {
-        this.#dispatchCustomEvent('errorFromModule', error.message)
+        Utilities.dispatchCustomEvent(this, 'errorFromModule', error.message)
       }
-    }
-
-    /**
-     * Dispatches a custom event, with bubbles set to true.
-     *
-     * @param {string} eventName - The name of the event.
-     * @param {string} eventDetail - The detail of the event.
-     */
-    #dispatchCustomEvent (eventName, eventDetail) {
-      this.dispatchEvent(new CustomEvent(eventName, {
-        bubbles: true,
-        detail: eventDetail
-      }))
     }
   }
 )

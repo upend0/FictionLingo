@@ -12,7 +12,7 @@ import { theAllLanguageTranslator } from '../../../../../L2-1DV610/src/app.js'
 
 const template = document.createElement('template')
 template.innerHTML = `
-  <translator-button id="the-all-language-btn">All-language</translator-button>
+  <translator-button id="the-all-language-btn">Allspråket</translator-button>
 `
 customElements.define('the-all-language-translator',
   /**

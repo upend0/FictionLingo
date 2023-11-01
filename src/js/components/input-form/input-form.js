@@ -18,7 +18,7 @@ template.innerHTML = `
   </style>
   <div class="container">
     <form>
-      <input id="input-element" type="text" placeholder="Write your text here">
+      <input id="input-element" type="text" placeholder="Skriv din text här">
     </form>
   </div>
 `
@@ -55,9 +55,9 @@ customElements.define('input-form',
       if (this.#isValidString(submittedText)) {
         this.#dispatchCustomEvent('textSubmitted', submittedText)
       } else if (submittedText === '') {
-        this.#dispatchCustomEvent('emptyString', 'The text field is empty.')
+        this.#dispatchCustomEvent('emptyString', 'Textfältet är tomt.')
       } else {
-        this.#dispatchCustomEvent('invalidCharacters', 'The text contains invalid characters.')
+        this.#dispatchCustomEvent('invalidCharacters', 'Texten innehåller ogiltiga tecken.')
       }
     }
 

@@ -12,7 +12,7 @@ import { robberLanguageTranslator } from '../../../../../L2-1DV610/src/app.js'
 
 const template = document.createElement('template')
 template.innerHTML = `
-  <translator-button id="robber-language-btn">Robber-language</translator-button>
+  <translator-button id="robber-language-btn">Rövarspråket</translator-button>
 `
 customElements.define('robber-language-translator',
   /**

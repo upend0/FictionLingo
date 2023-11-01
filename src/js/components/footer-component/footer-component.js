@@ -5,7 +5,6 @@
  * @version 1.0.0
  */
 
-// Create a template
 const template = document.createElement('template')
 template.innerHTML = `
   <style>
@@ -26,8 +25,8 @@ template.innerHTML = `
     }
   </style>
   <footer>
-    <p>This application is created by Maria Fredriksson as a school project in the course 1dv610 at Linnaeus University.</p>
-    <p>More information (in Swedish) about the made up languages can be found here: 
+    <p>Denna applikation är skapad av Maria Fredriksson som ett skolprojekt i kursen 1dv610 vid Linnéuniversitetet.</p>
+    <p>Mer information om de påhittade språken finns på dessa sidor: 
       <a href="https://sv.wikipedia.org/wiki/Allspr%C3%A5ket" target="_blank">Allspråket - Wikipedia</a>
       <a href="https://sv.wikipedia.org/wiki/Fikonspr%C3%A5ket" target="_blank">Fikonspråket - Wikipedia</a>
       <a href="https://sv.wikipedia.org/wiki/I-spr%C3%A5ket" target="_blank">I-språket - Wikipedia</a>

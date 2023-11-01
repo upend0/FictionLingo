@@ -18,7 +18,6 @@ import './text-field'
 // ^^ Just testing to import like this - make something else later
 // import { translator } from '../../../../L2-1DV610/src/app.js'
 
-// Create a template
 const template = document.createElement('template')
 template.innerHTML = `
   <style>
@@ -50,7 +49,7 @@ template.innerHTML = `
     <input-form></input-form>
     <error-text-field></error-text-field>
     <div id="translation-container">
-      <p>Choose a language to translate to:</p>
+      <p>Välj ett påhittat språk att översätta till:</p>
       <the-all-language-translator class="translate-buttons"></the-all-language-translator>
       <fig-language-translator class="translate-buttons"></fig-language-translator>
       <i-language-translator class="translate-buttons"></i-language-translator>
@@ -64,10 +63,6 @@ template.innerHTML = `
 
 // ^^ Should I have a text field that shows information?
 
-// & Translate app to Swedish instead?
-
-// TODO: Handle errors from the module
-// TODO: Change name of all-language to the-all-language
 // TODO: Refactor the methods for translating in the different translators
 
 customElements.define('translator-app',

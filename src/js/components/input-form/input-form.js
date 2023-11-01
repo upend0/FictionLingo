@@ -12,13 +12,13 @@ template.innerHTML = `
       font-family: Verdana, sans-serif;
     }
 
-    #input-text {
+    #input-element {
       font-size: 24px; 
     }
   </style>
   <div class="container">
     <form>
-      <input id="input-text" type="text" placeholder="Write your text here">
+      <input id="input-element" type="text" placeholder="Write your text here">
     </form>
   </div>
 `
@@ -27,7 +27,7 @@ customElements.define('input-form',
    * Represents a input-form element.
    */
   class extends HTMLElement {
-    #inputText
+    #inputElement
 
     /**
      * Creates an instance of the current type.
@@ -37,12 +37,12 @@ customElements.define('input-form',
 
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
-      this.#inputText = this.shadowRoot.querySelector('#input-text')
+      this.#inputElement = this.shadowRoot.querySelector('#input-element')
 
-      // Set the focus to the input field from the start
-      this.#inputText.focus()
+      // Set the focus to the input field from the start so it's easier for the user to start typing.
+      this.#inputElement.focus()
 
-      this.#inputText.addEventListener('input', event => this.#textSubmitted(event.target.value))
+      this.#inputElement.addEventListener('input', event => this.#textSubmitted(event.target.value))
     }
 
     /**
@@ -54,6 +54,8 @@ customElements.define('input-form',
     #textSubmitted (submittedText) {
       if (this.#isValidString(submittedText)) {
         this.#dispatchCustomEvent('textSubmitted', submittedText)
+      } else if (submittedText === '') {
+        this.#dispatchCustomEvent('emptyString', 'The text field is empty.')
       } else {
         this.#dispatchCustomEvent('invalidCharacters', 'The text contains invalid characters.')
       }
@@ -79,21 +81,8 @@ customElements.define('input-form',
      * @returns {boolean} True if the submitted text contains only valid characters.
      */
     #isValidString (submittedText) {
-      if (this.#isValidCharactersOrEmpty(submittedText)) {
-        return true
-      }
-      return false
-    }
-
-    /**
-     * Checks if the submitted text contains only valid characters or is empty.
-     *
-     * @param {string} submittedText - The text that was submitted.
-     * @returns {boolean} True if the submitted text contains only valid characters or is empty.
-     */
-    #isValidCharactersOrEmpty (submittedText) {
       const regex = /^[a-zåäöéüáàèìòúñ ]+$/i
-      if (submittedText === '' || regex.test(submittedText)) {
+      if (regex.test(submittedText)) {
         return true
       }
       return false

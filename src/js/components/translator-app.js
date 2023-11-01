@@ -98,6 +98,7 @@ customElements.define('translator-app',
       // Listen for the events that the components dispatch
       this.#inputForm.addEventListener('textSubmitted', event => this.#validTextSubmitted(event.detail))
       this.#inputForm.addEventListener('invalidCharacters', event => this.#invalidTextSubmitted(event.detail))
+      this.#inputForm.addEventListener('emptyString', this.#removeTextFromTranslateButtons.bind(this))
       this.#translationContainer.addEventListener('textTranslated', event => this.#showTranslatedText(event.detail))
       this.#translationContainer.addEventListener('errorFromModule', event => this.#showErrorMessage(event.detail))
     }

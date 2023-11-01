@@ -5,18 +5,18 @@
  * @version 1.0.0
  */
 
-import './../translator-button'
+import '../translator-button'
 
 // ^^ Just testing to import like this - make something else later
 import { theAllLanguageTranslator } from '../../../../../L2-1DV610/src/app.js'
 
 const template = document.createElement('template')
 template.innerHTML = `
-  <translator-button id="all-language-btn">All-language</translator-button>
+  <translator-button id="the-all-language-btn">All-language</translator-button>
 `
-customElements.define('all-language-translator',
+customElements.define('the-all-language-translator',
   /**
-   * Represents a all-language-translator element.
+   * Represents a the all-language-translator element.
    */
   class extends HTMLElement {
     /**
@@ -27,7 +27,7 @@ customElements.define('all-language-translator',
 
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
-      this.shadowRoot.querySelector('#all-language-btn').addEventListener('translatorButtonClick', event => this.#translateToAllLanguage(event))
+      this.shadowRoot.querySelector('#the-all-language-btn').addEventListener('translatorButtonClick', event => this.#translateToTheAllLanguage(event))
     }
 
     /**
@@ -35,7 +35,7 @@ customElements.define('all-language-translator',
      *
      * @param {object} event - The event object.
      */
-    #translateToAllLanguage (event) {
+    #translateToTheAllLanguage (event) {
       try {
         // Get the text from the attribute of this component
         const textToTranslate = this.getAttribute('text')

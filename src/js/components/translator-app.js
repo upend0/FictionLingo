@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import './all-language-translator'
+import './the-all-language-translator'
 import './fig-language-translator'
 import './i-language-translator'
 import './p-language-translator'
@@ -51,7 +51,7 @@ template.innerHTML = `
     <error-text-field></error-text-field>
     <div id="translation-container">
       <p>Choose a language to translate to:</p>
-      <all-language-translator class="translate-buttons"></all-language-translator>
+      <the-all-language-translator class="translate-buttons"></the-all-language-translator>
       <fig-language-translator class="translate-buttons"></fig-language-translator>
       <i-language-translator class="translate-buttons"></i-language-translator>
       <p-language-translator class="translate-buttons"></p-language-translator>

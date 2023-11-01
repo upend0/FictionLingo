@@ -26,34 +26,35 @@ customElements.define('the-all-language-translator',
 
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
-      this.shadowRoot.querySelector('#the-all-language-btn').addEventListener('translatorButtonClick', event => this.#translateToTheAllLanguage(event))
+      this.shadowRoot.querySelector('#the-all-language-btn').addEventListener('translatorButtonClick', event => this.#translateToTheAllLanguage())
     }
 
     /**
-     * TODO: Write something here.
-     *
-     * @param {object} event - The event object.
+     * Translates the text to the all-language.
      */
-    #translateToTheAllLanguage (event) {
+    #translateToTheAllLanguage () {
       try {
-        // Get the text from the attribute of this component
         const textToTranslate = this.getAttribute('text')
 
-        // Translate the text
         const translatedText = theAllLanguageTranslator.translateToTheAllLanguage(textToTranslate)
 
-        // Dispatch a custom event that contains the translated text
-        this.dispatchEvent(new window.CustomEvent('textTranslated', {
-          bubbles: true,
-          detail: translatedText
-        }))
+        this.#dispatchCustomEvent('textTranslated', translatedText)
       } catch (error) {
-        // Dispatch a custom event that contains the error message
-        this.dispatchEvent(new window.CustomEvent('errorFromModule', {
-          bubbles: true,
-          detail: error.message
-        }))
+        this.#dispatchCustomEvent('errorFromModule', error.message)
       }
+    }
+
+    /**
+     * Dispatches a custom event, with bubbles set to true.
+     *
+     * @param {string} eventName - The name of the event.
+     * @param {string} eventDetail - The detail of the event.
+     */
+    #dispatchCustomEvent (eventName, eventDetail) {
+      this.dispatchEvent(new CustomEvent(eventName, {
+        bubbles: true,
+        detail: eventDetail
+      }))
     }
   }
 )

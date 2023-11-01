@@ -7,8 +7,7 @@
 
 import '../translator-button'
 
-// ^^ Just testing to import like this - make something else later
-import { theAllLanguageTranslator } from '../../../../../L2-1DV610/src/app.js'
+import { theAllLanguageTranslator } from 'l2-1dv610'
 
 const template = document.createElement('template')
 template.innerHTML = `

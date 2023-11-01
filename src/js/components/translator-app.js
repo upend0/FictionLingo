@@ -15,9 +15,6 @@ import './error-text-field'
 import './footer-component'
 import './text-field'
 
-// ^^ Just testing to import like this - make something else later
-// import { translator } from '../../../../L2-1DV610/src/app.js'
-
 const template = document.createElement('template')
 template.innerHTML = `
   <style>

@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/upend0/L3-1dv610/issues"
   },
-  "homepage": "https://github.com/upend0/L3-1dv610#readme"
+  "homepage": "https://github.com/upend0/L3-1dv610#readme",
+  "dependencies": {
+    "l2-1dv610": "github:upend0/L2-1DV610#main"
+  }
 }

@@ -16,7 +16,7 @@ template.innerHTML = `
 `
 customElements.define('fig-language-translator',
   /**
-   * Represents a the fig-language-translator element.
+   * Represents a fig-language-translator element.
    */
   class extends HTMLElement {
     /**
@@ -31,7 +31,7 @@ customElements.define('fig-language-translator',
     }
 
     /**
-     * Translates the text to the fig-language.
+     * Translates the text to fig-language.
      */
     #translateToFigLanguage () {
       try {

@@ -16,7 +16,7 @@ template.innerHTML = `
 `
 customElements.define('p-language-translator',
   /**
-   * Represents a the p-language-translator element.
+   * Represents a p-language-translator element.
    */
   class extends HTMLElement {
     /**
@@ -31,7 +31,7 @@ customElements.define('p-language-translator',
     }
 
     /**
-     * Translates the text to the p-language.
+     * Translates the text to  p-language.
      */
     #translateToPLanguage () {
       try {

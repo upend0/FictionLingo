@@ -14,7 +14,6 @@ template.innerHTML = `
 
     button {
       background-color: #fff;
-      /* color: #fff; */
       border: none;
       border-radius: 10px;
       padding: 10px 20px;

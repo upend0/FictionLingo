@@ -16,7 +16,7 @@ template.innerHTML = `
 `
 customElements.define('i-language-translator',
   /**
-   * Represents a the i-language-translator element.
+   * Represents a i-language-translator element.
    */
   class extends HTMLElement {
     /**
@@ -31,7 +31,7 @@ customElements.define('i-language-translator',
     }
 
     /**
-     * Translates the text to the i-language.
+     * Translates the text to i-language.
      */
     #translateToILanguage () {
       try {

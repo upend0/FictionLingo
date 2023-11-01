@@ -58,10 +58,6 @@ template.innerHTML = `
   <footer-component></footer-component>
 `
 
-// ^^ Should I have a text field that shows information?
-
-// TODO: Refactor the methods for translating in the different translators
-
 customElements.define('translator-app',
   /**
    * Represents a translator-app element.
@@ -87,7 +83,7 @@ customElements.define('translator-app',
       this.#translationContainer = this.shadowRoot.querySelector('#translation-container')
       this.#translateButtons = this.shadowRoot.querySelectorAll('.translate-buttons')
 
-      // Listen for the events that the components dispatch
+      // ^^ Make this to a method...?
       this.#inputForm.addEventListener('textSubmitted', event => this.#validTextSubmitted(event.detail))
       this.#inputForm.addEventListener('invalidCharacters', event => this.#invalidTextSubmitted(event.detail))
       this.#inputForm.addEventListener('emptyString', this.#removeTextFromTranslateButtons.bind(this))
@@ -102,9 +98,6 @@ customElements.define('translator-app',
      */
     #validTextSubmitted (submittedText) {
       this.#removeErrorMessage()
-
-      // ^^ Just try to send the text to the text-field component for now
-      this.#showTranslatedText(submittedText)
 
       this.#notifyTranslateButtonsOfSubmittedText(submittedText)
     }

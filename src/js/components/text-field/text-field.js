@@ -5,11 +5,13 @@
  * @version 1.0.0
  */
 
-// Create a template
 const template = document.createElement('template')
 template.innerHTML = `
   <style>
-    
+    #textContainer {
+      max-width: 100vw;
+      overflow-wrap: break-word;
+    }
   </style>
   <p id="textContainer"></p>
 `

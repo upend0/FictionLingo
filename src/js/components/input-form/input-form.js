@@ -5,6 +5,8 @@
  * @version 1.0.0
  */
 
+import { Utilities } from '../translator-components/Utilities.js'
+
 const template = document.createElement('template')
 template.innerHTML = `
   <style>
@@ -42,36 +44,22 @@ customElements.define('input-form',
       // Set the focus to the input field from the start so it's easier for the user to start typing.
       this.#inputElement.focus()
 
-      this.#inputElement.addEventListener('input', event => this.#textSubmitted(event.target.value))
+      this.#inputElement.addEventListener('input', event => this.#dispatchEventsWhenTextIsEntered(event.target.value))
     }
 
     /**
-     * Dispatches a custom event that contains the text that was submitted if the text contains only valid characters.
+     * Dispatches custom events depending on if the submitted text is valid or not or if the text field is empty.
      *
      * @param {string} submittedText - The text that was submitted.
      */
-    // ^^ Change name to something more clear and with a verb...?
-    #textSubmitted (submittedText) {
+    #dispatchEventsWhenTextIsEntered (submittedText) {
       if (this.#isValidString(submittedText)) {
-        this.#dispatchCustomEvent('textSubmitted', submittedText)
+        Utilities.dispatchCustomEvent(this, 'textSubmitted', submittedText)
       } else if (submittedText === '') {
-        this.#dispatchCustomEvent('emptyString', 'Textfältet är tomt.')
+        Utilities.dispatchCustomEvent(this, 'emptyString', 'Textfältet är tomt.')
       } else {
-        this.#dispatchCustomEvent('invalidCharacters', 'Texten innehåller ogiltiga tecken.')
+        Utilities.dispatchCustomEvent(this, 'invalidCharacters', 'Texten innehåller ogiltiga tecken.')
       }
-    }
-
-    /**
-     * Dispatches a custom event, with bubbles set to true.
-     *
-     * @param {string} eventName - The name of the event.
-     * @param {string} eventDetail - The detail of the event.
-     */
-    #dispatchCustomEvent (eventName, eventDetail) {
-      this.dispatchEvent(new CustomEvent(eventName, {
-        bubbles: true,
-        detail: eventDetail
-      }))
     }
 
     /**

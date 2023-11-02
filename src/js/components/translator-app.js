@@ -101,7 +101,7 @@ customElements.define('translator-app',
       this.#inputForm.addEventListener('invalidCharacters', event => this.#invalidTextSubmitted(event.detail))
       this.#inputForm.addEventListener('emptyString', this.#removeTextFromTranslateButtons.bind(this))
       this.#translationContainer.addEventListener('textTranslated', event => this.#showTranslatedText(event.detail))
-      this.#translationContainer.addEventListener('errorFromModule', event => this.#showErrorMessage(event.detail))
+      this.#translationContainer.addEventListener('errorFromModule', event => this.#errorFromModule(event.detail))
     }
 
     /**
@@ -136,18 +136,31 @@ customElements.define('translator-app',
     /**
      * When an invalid text is submitted, an error message is shown and the text is removed so the translate buttons can't translate it.
      *
-     * @param {string} errorMessage - The error message.
+     * @param {string} errorMessage - The error message to show.
      */
     #invalidTextSubmitted (errorMessage) {
       this.#showErrorMessage(errorMessage)
 
       this.#removeTextFromTranslateButtons()
+
+      this.#removeTranslatedText()
+    }
+
+    /**
+     * When an error occurs in one of the translate buttons, an error message is shown and the translated text is removed.
+     *
+     * @param {string} errorMessage - The error message to show.
+     */
+    #errorFromModule (errorMessage) {
+      this.#showErrorMessage(errorMessage)
+
+      this.#removeTranslatedText()
     }
 
     /**
      * Shows an error message.
      *
-     * @param {string} errorMessage - The error message.
+     * @param {string} errorMessage - The error message to show.
      */
     #showErrorMessage (errorMessage) {
       this.#errorTextField.setAttribute('error-message', errorMessage)
@@ -163,7 +176,14 @@ customElements.define('translator-app',
     }
 
     /**
-     * Shows the translated text.
+     * Removes the translated text from the text field.
+     */
+    #removeTranslatedText () {
+      this.#textField.setAttribute('text', '')
+    }
+
+    /**
+     * Shows the translated text in the text field.
      *
      * @param {string} translatedText - The translated text.
      */

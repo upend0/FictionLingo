@@ -12,6 +12,7 @@ export class Utilities {
    * @param {string} eventName - The name of the event.
    * @param {string} eventDetail - The detail of the event.
    */
+  // Static method so that it can be called easily without creating an instance of the class in every component where the method is needed.
   static dispatchCustomEvent (element, eventName, eventDetail) {
     element.dispatchEvent(new CustomEvent(eventName, {
       bubbles: true,

@@ -77,13 +77,26 @@ customElements.define('translator-app',
 
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
+      this.#assignPrivateFields()
+
+      this.#addEventListeners()
+    }
+
+    /**
+     * Assigns values to private fields.
+     */
+    #assignPrivateFields () {
       this.#inputForm = this.shadowRoot.querySelector('input-form')
       this.#errorTextField = this.shadowRoot.querySelector('error-text-field')
       this.#textField = this.shadowRoot.querySelector('text-field')
       this.#translationContainer = this.shadowRoot.querySelector('#translation-container')
       this.#translateButtons = this.shadowRoot.querySelectorAll('.translate-buttons')
+    }
 
-      // ^^ Make this to a method...?
+    /**
+     * Adds event listeners.
+     */
+    #addEventListeners () {
       this.#inputForm.addEventListener('textSubmitted', event => this.#validTextSubmitted(event.detail))
       this.#inputForm.addEventListener('invalidCharacters', event => this.#invalidTextSubmitted(event.detail))
       this.#inputForm.addEventListener('emptyString', this.#removeTextFromTranslateButtons.bind(this))

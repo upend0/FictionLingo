@@ -45,6 +45,10 @@ customElements.define('input-form',
       this.#inputElement.focus()
 
       this.#inputElement.addEventListener('input', event => this.#dispatchEventsWhenTextIsEntered(event.target.value))
+
+      // Add an event listener to the form to prevent the default behavior of submitting the form
+      // (and thus reloading the page) when the user presses enter.
+      this.shadowRoot.querySelector('form').addEventListener('submit', event => event.preventDefault())
     }
 
     /**
@@ -70,10 +74,7 @@ customElements.define('input-form',
      */
     #isValidString (submittedText) {
       const regex = /^[a-zåäöéüáàèìòúñ ]+$/i
-      if (regex.test(submittedText)) {
-        return true
-      }
-      return false
+      return regex.test(submittedText)
     }
   }
 )

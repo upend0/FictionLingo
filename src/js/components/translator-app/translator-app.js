@@ -5,15 +5,15 @@
  * @version 1.0.0
  */
 
-import './translator-components/the-all-language-translator'
-import './translator-components/fig-language-translator'
-import './translator-components/i-language-translator'
-import './translator-components/p-language-translator'
-import './translator-components/robber-language-translator'
-import './input-form'
-import './error-text-field'
-import './footer-component'
-import './text-field'
+import './../translator-components/the-all-language-translator'
+import './../translator-components/fig-language-translator'
+import './../translator-components/i-language-translator'
+import './../translator-components/p-language-translator'
+import './../translator-components/robber-language-translator'
+import './../input-form'
+import './../error-text-field'
+import './../footer-component'
+import './../text-field'
 
 const template = document.createElement('template')
 template.innerHTML = `

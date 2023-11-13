@@ -5,4 +5,4 @@
  * @version 1.0.0
  */
 
-import './translator-app'
+import './translator-app.js'

@@ -36,7 +36,7 @@ customElements.define('translator-button',
 
       this.attachShadow({ mode: 'open' }).appendChild(template.content.cloneNode(true))
 
-      this.shadowRoot.querySelector('button').addEventListener('click', event => this.handleClick(event))
+      this.shadowRoot.querySelector('button').addEventListener('click', event => this.#handleClick(event))
     }
 
     /**
@@ -44,7 +44,7 @@ customElements.define('translator-button',
      *
      * @param {*} event - The event.
      */
-    handleClick (event) {
+    #handleClick (event) {
       this.dispatchEvent(new window.CustomEvent('translatorButtonClick', { bubbles: true }))
     }
   }

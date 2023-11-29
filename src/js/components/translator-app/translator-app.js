@@ -134,7 +134,8 @@ customElements.define('translator-app',
     }
 
     /**
-     * When an invalid text is submitted, an error message is shown and the text is removed so the translate buttons can't translate it.
+     * When an invalid text is submitted, an error message is shown and the text is removed
+     * so the translate buttons can't translate it.
      *
      * @param {string} errorMessage - The error message to show.
      */

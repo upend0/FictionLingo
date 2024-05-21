@@ -1,10 +1,11 @@
-# Translator App
+# Fiction Lingo
 
 ![Translator App](./images/translator-app.jpg)
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [App Language](#app-language)
+- [Deployed application](#deployed-application)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
@@ -17,14 +18,17 @@
 
 ## Introduction
 
-The Translator App is a web application built using web components that allows users to translate text into five made-up languages: All-Language, Fig-Language, I-Language, P-Language, and Robber-Language. This readme provides information on how to install and use the Translator App and explains its key features.
+Fiction Lingo is a web application built using web components that allows users to translate text into five made-up languages: All-Language, Fig-Language, I-Language, P-Language, and Robber-Language. This readme provides information on how to install and use the Fiction Lingo application and explains its key features.
 
 ## App language
 The app is written in swedish and it is made for translating primarily swedish texts. However, texts in other languages with similar characters to swedish (like english) could also be translated.
 
+## Deployed application
+The app is deployed at: [https://fictionlingo.netlify.app/](https://fictionlingo.netlify.app/)
+
 ## Installation
 
-To install the Translator App and its dependencies using npm:
+To install Fiction Lingo and its dependencies using npm:
 
 ```bash
 npm install
@@ -38,11 +42,11 @@ Once the app is installed, you can run it locally using the following command:
 npm run dev
 ```
 
-This command will start the Vite development server and provide a local host URL (usually `http://localhost:5173/`) where you can access the Translator App in your web browser.
+This command will start the Vite development server and provide a local host URL (usually `http://localhost:5173/`) where you can access Fiction Lingo in your web browser.
 
 ## Features
 
-The Translator App offers the following features:
+Fiction Lingo offers the following features:
 
 1. **Translation to made-up Languages:** Users can translate text into five made-up languages by clicking on the corresponding translation buttons.
 
@@ -67,7 +71,7 @@ The Translator App offers the following features:
 
 ## Component Structure
 
-The Translator App is built using web components. Here is an overview of the app's component structure:
+Fiction Lingo is built using web components. Here is an overview of the app's component structure:
 
 - `translator-app`: The main web component representing the Translator App.
 - `input-form`: Handles user input and validation.
@@ -97,4 +101,4 @@ Maria Fredriksson <mf223wk@student.lnu.se>
 ## License
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
-Enjoy translating text into made-up languages with the Translator App!
+Enjoy translating text into made-up languages with Fiction Lingo!
